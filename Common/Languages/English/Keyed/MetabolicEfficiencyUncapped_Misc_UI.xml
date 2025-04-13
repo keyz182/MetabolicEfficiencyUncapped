@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-    <MetabolicEfficiencyUncapped_SettingsCategory>MetabolicEfficiencyUncapped</MetabolicEfficiencyUncapped_SettingsCategory>
-    <MetabolicEfficiencyUncapped_Settings_SettingName>Some Setting</MetabolicEfficiencyUncapped_Settings_SettingName>
+    <MetabolicEfficiencyUncapped_SettingsCategory>Metabolic Efficiency Uncapped</MetabolicEfficiencyUncapped_SettingsCategory>
+    <MetabolicEfficiencyUncapped_EnableExtendedMetabolismMultipliers>Enable extended metabolic efficiency curve</MetabolicEfficiencyUncapped_EnableExtendedMetabolismMultipliers>
+    <MetabolicEfficiencyUncapped_EnableExtendedComplexityCurve>Enable extended complexity to creation curve</MetabolicEfficiencyUncapped_EnableExtendedComplexityCurve>
+    <MetabolicEfficiencyUncapped_EnableExtendedBioStatRange>Enable extended bio stat range for generation</MetabolicEfficiencyUncapped_EnableExtendedBioStatRange>
+    <MetabolicEfficiencyUncapped_EnableExtendedBaseMaxComplexity>Enable extended base max complexity for generation</MetabolicEfficiencyUncapped_EnableExtendedBaseMaxComplexity>
 </LanguageData>
