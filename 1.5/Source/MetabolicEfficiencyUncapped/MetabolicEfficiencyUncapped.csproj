@@ -40,6 +40,9 @@
       <Link>Attached/Rimworld/%(RecursiveDir)/%(FileName)%(Extension)</Link>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
+    <Content Include="..\..\..\Compatibility\RedMattis.BetterPrerequisites\1.5\Assemblies\MetabolicEfficiencyUncapped.BS.dll">
+      <Link>MetabolicEfficiencyUncapped\Compatibility\RedMattis.BetterPrerequisites\1.5\Assemblies\MetabolicEfficiencyUncapped.BS.dll</Link>
+    </Content>
     <Content Include="..\..\..\modlist.xml">
       <Link>MetabolicEfficiencyUncapped\modlist.xml</Link>
     </Content>
