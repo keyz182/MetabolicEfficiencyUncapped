@@ -11,9 +11,7 @@
     <exclude>Assets</exclude>
     <exclude>Common\Sounds</exclude>
     <exclude>Common\Textures</exclude>
-    <exclude>MetabolicEfficiencyUncapped.zip</exclude>
     <exclude>modlist.xml</exclude>
     <exclude>Release</exclude>
-    <exclude>release.bat</exclude>
   </Excluded>
 </Configuration>

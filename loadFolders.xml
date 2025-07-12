@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <loadFolders>
-	<v1.5>
-		<li>Common</li>
-		<li>1.5</li>
+    <v1.5>
+        <li>Common</li>
+        <li>1.5</li>
         <li IfModActive="RedMattis.BetterPrerequisites">Compatibility/RedMattis.BetterPrerequisites/1.5</li>
-	</v1.5>
+    </v1.5>
+    <v1.6>
+        <li>Common</li>
+        <li>1.6</li>
+        <li IfModActive="RedMattis.BetterPrerequisites">Compatibility/RedMattis.BetterPrerequisites/1.6</li>
+    </v1.6>
 </loadFolders>
