@@ -35,77 +35,28 @@ public class Settings : ModSettings
         { new CurvePoint(5f, 0.5f), true },
     };
 
-
     public static readonly SimpleCurve ComplexityToCreationHoursCurveNew = new SimpleCurve()
     {
-        {
-            new CurvePoint(0.0f, 3f),
-            true
-        },
-        {
-            new CurvePoint(4f, 5f),
-            true
-        },
-        {
-            new CurvePoint(8f, 8f),
-            true
-        },
-        {
-            new CurvePoint(12f, 12f),
-            true
-        },
-        {
-            new CurvePoint(16f, 17f),
-            true
-        },
-        {
-            new CurvePoint(20f, 23f),
-            true
-        },
-        {
-            new CurvePoint(50f, 144f),
-            true
-        },
-        {
-            new CurvePoint(100f, 300f),
-            true
-        },
-        {
-            new CurvePoint(1000f, 5000f),
-            true
-        },
-        {
-            new CurvePoint(10000f, 70000f),
-            true
-        }
+        { new CurvePoint(0.0f, 3f), true },
+        { new CurvePoint(4f, 5f), true },
+        { new CurvePoint(8f, 8f), true },
+        { new CurvePoint(12f, 12f), true },
+        { new CurvePoint(16f, 17f), true },
+        { new CurvePoint(20f, 23f), true },
+        { new CurvePoint(50f, 144f), true },
+        { new CurvePoint(100f, 300f), true },
+        { new CurvePoint(1000f, 5000f), true },
+        { new CurvePoint(10000f, 70000f), true },
     };
 
     public static readonly SimpleCurve ComplexityToCreationHoursCurveOrig = new SimpleCurve()
     {
-        {
-            new CurvePoint(0.0f, 3f),
-            true
-        },
-        {
-            new CurvePoint(4f, 5f),
-            true
-        },
-        {
-            new CurvePoint(8f, 8f),
-            true
-        },
-        {
-            new CurvePoint(12f, 12f),
-            true
-        },
-        {
-            new CurvePoint(16f, 17f),
-            true
-        },
-        {
-            new CurvePoint(20f, 23f),
-            true
-        }
+        { new CurvePoint(0.0f, 3f), true },
+        { new CurvePoint(4f, 5f), true },
+        { new CurvePoint(8f, 8f), true },
+        { new CurvePoint(12f, 12f), true },
+        { new CurvePoint(16f, 17f), true },
+        { new CurvePoint(20f, 23f), true },
     };
 
     public bool EnableExtendedMetabolismMultipliers = true;
@@ -127,27 +78,35 @@ public class Settings : ModSettings
         options.End();
     }
 
-    public static Lazy<FieldInfo> MetabolismToFoodConsumptionFactorCurve = new Lazy<FieldInfo>(() => AccessTools.Field(typeof(GeneTuning), nameof(GeneTuning.MetabolismToFoodConsumptionFactorCurve)));
-    public static Lazy<FieldInfo> ComplexityToCreationHoursCurve = new Lazy<FieldInfo>(() => AccessTools.Field(typeof(GeneTuning), nameof(GeneTuning.ComplexityToCreationHoursCurve)));
-    public static Lazy<FieldInfo> BiostatRange = new Lazy<FieldInfo>(() => AccessTools.Field(typeof(GeneTuning), nameof(GeneTuning.BiostatRange)));
+    public static Lazy<FieldInfo> MetabolismToFoodConsumptionFactorCurve = new(() =>
+        AccessTools.Field(typeof(GeneTuning), nameof(GeneTuning.MetabolismToFoodConsumptionFactorCurve))
+    );
+    public static Lazy<FieldInfo> ComplexityToCreationHoursCurve = new(() => AccessTools.Field(typeof(GeneTuning), nameof(GeneTuning.ComplexityToCreationHoursCurve)));
+    public static Lazy<FieldInfo> BiostatRange = new(() => AccessTools.Field(typeof(GeneTuning), nameof(GeneTuning.BiostatRange)));
 
     public void OverrideSettings()
     {
+        // Clean up curves
+
+        MetabolismToFoodConsumptionFactorCurveNew?.SortPoints();
+        ComplexityToCreationHoursCurveNew?.SortPoints();
+
+        // set curves
         MetabolismToFoodConsumptionFactorCurve.Value.SetValue(
             null,
-            EnableExtendedMetabolismMultipliers ? MetabolismToFoodConsumptionFactorCurveNew : MetabolismToFoodConsumptionFactorCurveOrig
+            EnableExtendedMetabolismMultipliers && MetabolismToFoodConsumptionFactorCurveNew != null
+                ? MetabolismToFoodConsumptionFactorCurveNew
+                : MetabolismToFoodConsumptionFactorCurveOrig
         );
 
         ComplexityToCreationHoursCurve.Value.SetValue(
             null,
-            EnableExtendedComplexityCurve ? ComplexityToCreationHoursCurveNew : ComplexityToCreationHoursCurveOrig
+            EnableExtendedComplexityCurve && ComplexityToCreationHoursCurveNew != null ? ComplexityToCreationHoursCurveNew : ComplexityToCreationHoursCurveOrig
         );
 
-        BiostatRange.Value.SetValue(
-            null,
-            EnableExtendedBioStatRange ? new IntRange(-100,100) : new IntRange(-5,5)
-        );
+        BiostatRange.Value.SetValue(null, EnableExtendedBioStatRange ? new IntRange(-100, 100) : new IntRange(-5, 5));
     }
+
     public override void ExposeData()
     {
         Scribe_Values.Look(ref EnableExtendedMetabolismMultipliers, "EnableExtendedMetabolismMultipliers", true);
