@@ -1,6 +1,6 @@
-﻿using Verse;
+﻿using HarmonyLib;
 using UnityEngine;
-using HarmonyLib;
+using Verse;
 
 namespace MetabolicEfficiencyUncapped;
 
@@ -8,9 +8,9 @@ public class MetabolicEfficiencyUncappedMod : Mod
 {
     public static Settings settings;
 
-    public MetabolicEfficiencyUncappedMod(ModContentPack content) : base(content)
+    public MetabolicEfficiencyUncappedMod(ModContentPack content)
+        : base(content)
     {
-
         // initialize settings
         settings = GetSettings<Settings>();
 #if DEBUG
@@ -18,11 +18,6 @@ public class MetabolicEfficiencyUncappedMod : Mod
 #endif
         Harmony harmony = new Harmony("keyz182.rimworld.MetabolicEfficiencyUncapped.main");
         harmony.PatchAll();
-
-        if (this.GetSettings<Settings>() != null)
-        {
-            this.GetSettings<Settings>().OverrideSettings();
-        }
     }
 
     public override void DoSettingsWindowContents(Rect inRect)
