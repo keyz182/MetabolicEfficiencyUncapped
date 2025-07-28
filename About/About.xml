@@ -17,7 +17,9 @@
             <downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/latest</downloadUrl>
         </li>
     </modDependencies>
-
+    <loadBefore>
+        <li>smartkar.athenaframework</li>
+    </loadBefore>
     <loadAfter>
         <li>brrainz.harmony</li>
         <li>Ludeon.RimWorld</li>
